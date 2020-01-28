@@ -1,0 +1,9 @@
+name:Manuel
+email:manuel@correo.com
+gender:male
+age:19
+botmaster:theBoss
+organization:ugr
+version:0.0.4
+city:Cordoba
+studies:ingenieria informatica

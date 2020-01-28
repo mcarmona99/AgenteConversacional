@@ -1,0 +1,11 @@
+rojo
+verde
+amarillo
+blanco
+negro
+rosa
+beis
+beige
+azul
+morado
+marron

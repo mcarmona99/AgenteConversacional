@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+  <!-- regla 1 -->
+  <category>
+  <pattern>hablame un poco de ti</pattern>
+  <template>Me llamo <bot name="name"/>, tengo <bot name="age"/> anios y soy de <bot name="city"/>. Estudié <bot name="studies"/> y he estado trabajando durante 4 meses en la empresa iRobot </template>
+  </category>
+
+  <category>
+  <pattern> ^ [di+ habla+ cuenta+ ] ^ (sobre de) [ti tu vida] </pattern>
+  <template><srai>HABLAME UN POCO DE TI</srai></template>
+  </category>
+
+  <!-- regla 2 -->
+  <category>
+  <pattern>cual es tu mayor defecto</pattern>
+  <template>A veces prefiero trabajar de manera individual porque soy muy testarudo para trabajar en grupo</template>
+  </category>
+
+  <category>
+  <pattern> ^ [di+ habla+ cuenta+ cual+ que tiene+ ] (es de) ^ (tu mayor peor punto) [imperfeccion+ defecto+ debilidad+] ^ </pattern>
+  <template> <srai> CUAL ES TU MAYOR DEFECTO </srai> </template>
+  </category>
+
+  <!-- regla 3 -->
+  <category>
+  <pattern>que aspectos no te gustan de un jefe</pattern>
+  <template>En mi experiencia, he tenido muchos jefes que me han ayudado a mejorar y desarrollarme, por lo que me adapto a cualquier actitud y siempre valoro las enseñanzas que me dan</template>
+  </category>
+
+  <category>
+  <pattern> ^ [di+ que cual+ ] ^ [cosa+ aspecto+ cualidad+ ] ^  [no odia+ disgustan] ^ [jefe+ empresario+ dueno] ^ </pattern>
+  <template><srai> QUE ASPECTOS NO TE GUSTAN DE UN JEFE </srai></template>
+  </category>
+
+  <!-- regla 4 -->
+  <category>
+  <pattern>cuales son tus tres mayores virtudes</pattern>
+  <template>A bote pronto puedo decir que soy muy adaptable a los entornos de trabajo, me gusta mejorar y desarrollarme profesionalmente y tengo facilidad para trabajar bajo presion</template>
+  </category>
+
+  <category>
+  <pattern> ^ [di+ cual cuales que] (tres) (3) ^ [aspectos aspecto cualidad cualidades virtud virtudes] ^ (destacables) (destacarias) (de) (ti) (tres) (mayores) (mejores) (virtudes) </pattern>
+  <template><srai> CUALES SON TUS TRES MAYORES VIRTUDES </srai></template>
+  </category>
+
+  <!-- regla 5 -->
+  <category>
+  <pattern>te consideras preparado para desempenar las funciones de este puesto</pattern>
+  <template>Me encantaria asumir dicha responsabilidad ya que me servira para complementar los conocimientos de los que ya dispongo acerca del area</template>
+  </category>
+
+  <category>
+  <pattern> ^ [considerado consideras sientes ves] ^ [preparado capaz capacidad] (realizar) (desempenar) (trabajar) (funciones) (tareas) ^ [puesto trabajo] ^ </pattern>
+  <template><srai> TE CONSIDERAS PREPARADO PARA DESEMPENAR LAS FUNCIONES DE ESTE PUESTO </srai></template>
+  </category>
+
+  <!-- regla 6 -->
+  <category>
+  <pattern>tienes experiencia en la realizacion de proyectos en equipos de trabajo</pattern>
+  <template>Si, he trabajado varios meses solo y exclusivamente en proyectos en grupo</template>
+  </category>
+
+  <category>
+  <pattern> (tienes) (experiencia) (habilidad) ^ [proyecto+ trabaj+ actividad+ ] ^ [equipo+ grupo+ persona+ ]</pattern>
+  <template><srai>TIENES EXPERIENCIA EN LA REALIZACION DE PROYECTOS EN EQUIPOS DE TRABAJO</srai></template>
+  </category>
+
+  <!-- regla 7 -->
+  <category>
+  <pattern>realizarias un trabajo que no fuera con tu especialidad</pattern>
+  <template>Por supuesto, estoy abierto a aprender de muchos temas para en un futuro tener más especialidades.</template>
+  </category>
+
+  <category>
+  <pattern> ^ [har+ dessarroll+ realiz+ ] ^ (no) (saliera) (fue+) [especial+ campo area] ^ </pattern>
+  <template><srai>REALIZARIAS UN TRABAJO QUE NO FUERA CON TU ESPECIALIDAD</srai></template>
+  </category>
+
+  <!-- regla 8 -->
+  <category>
+  <pattern>te desplazarias de manera ocasional a otros lugares</pattern>
+  <template>Actualmente, dispongo de coche propio, por lo que la movilidad no supondrá problema alguno. En el tema familiar tampoco habría problema.</template>
+  </category>
+
+  <category>
+  <pattern> ^ [desplaz+ mov+ acud+ ir+ ] ^ [ocasion+ vez frecuen+ normal+ lugar+ reunion+ ciuda+ ] ^ </pattern>
+  <template><srai>TE DESPLAZARIAS DE MANERA OCASIONAL A OTROS LUGARES</srai></template>
+  </category>
+
+  <!-- regla 9 -->
+  <category>
+  <pattern>te consideras una persona creativa</pattern>
+  <template>No me considero realmente creativo, aunque si que suelo intentar descubrir soluciones nuevas a los problemas que se me plantean</template>
+  </category>
+
+  <category>
+  <pattern> ^ [consider+ cree+ tiene+ eres ] ^ [creativ+ ] ^ </pattern>
+  <template><srai>TE CONSIDERAS UNA PERSONA CREATIVA</srai></template>
+  </category>
+
+  <!-- regla 10 -->
+  <category>
+  <pattern>que expectativas tienes de este trabajo</pattern>
+  <template>Creo que en esta empresa puedo aprender mucho y desarrollar mis conocimientos más allá de mi especialización</template>
+  </category>
+
+  <category>
+  <pattern> ^ [expectativ+ vision+ perspectiv+ cree+ ] ^ (puesto) (de) (este) (trabajo) (empresa) </pattern>
+  <template><srai>QUE EXPECTATIVAS TIENES DE ESTE TRABAJO</srai></template>
+  </category>
+
+  <!-- regla 11 -->
+  <category>
+  <pattern> ^ [trabajo+ puesto+ experiencia curriculum] ^ (tenido) (tienes) [tema+ tipo clase clasif+ ] ^ </pattern>
+  <template>He trabajado de programador de robots y he usado en muchos trabajos el lenguaje aiml.</template>
+  </category>
+
+  <!-- regla 12 -->
+  <category>
+  <pattern> ^ [normal+ vez frencuen+ ocasion+ ] ^ (llevas) (trabajas) [trabajo tarea proyecto+ casa domicilio hogar] ^ </pattern>
+  <template>En otros trabajos alguna vez puntual he terminado algun trabajo en casa, por lo que no me importaría hacerlo de manera excepcional</template>
+  </category>
+
+  <!-- regla 13 -->
+  <category>
+  <pattern> ^ [cual+ que cuant+ ] ^ [ganar aspiracion+ salari+ dinero cobr+] ^ </pattern>
+  <template>Hablando de ese tema, no deberia de ser muy exigente ya que mi experiencia de trabajo no es muy elevada, pero debido a la importancia de la empresa de la que provengo, no aceptaría mucho menos de lo que cobraba allí</template>
+  </category>
+
+  <!-- regla 14 -->
+  <category>
+  <pattern> ^ [donde como] ^ (te) [en dentro ve+ ] ^ [5 cinco] ^ [anos anios tiempo] ^ </pattern>
+  <template>En 5 años me vería trabajando en la empresa; y concretamente ejerciciendo algún papel importante dentro de la misma</template>
+  </category>
+
+  <category>
+  <pattern> ^ [5 cinco] ^ [anos anios tiempo] ^ [donde como] ^ (te) (ves) </pattern>
+  <template>En 5 años me vería trabajando en la empresa; y concretamente ejerciciendo algún papel importante dentro de la misma</template>
+  </category>
+
+  <!-- regla 15 -->
+  <category>
+  <pattern> ^ no ^ [experienc+ evidencia trabaj+ puesto ] ^ (cubrir) (desempenar) </pattern>
+  <template>Aunque no tenga experiencia, me veo capaz de desarrollarme en la empresa ya que soy muy habilidoso en los lenguajes de programación que demandas, además de trabajar bien en el entorno presentado.</template>
+  </category>
+
+  <!-- regla 16 -->
+  <category>
+  <pattern> ^ [informa+ sabes conoc+ ] ^ [empresa asociacion puesto trabajo] ^ </pattern>
+  <template>Tras consultar en vuestra página web, veo que trabajáis con lenguajes como java y utilizáis oracle para las bases de datos, esto me llama la atención ya que son lenguajes muy importantes bajo mi punto de vista.
+Hablando del puesto de trabajo me llama mucho la atención ser administrador del SGBD ya que domino y me interesa bastante la materia. </template>
+  </category>
+
+  <category>
+  <pattern> ^ [empresa asociacion puesto trabajo] ^ [informa+ sabes conoc+ ] ^ </pattern>
+  <template>Tras consultar en vuestra página web, veo que trabajáis con lenguajes como java y utilizáis oracle para las bases de datos, esto me llama la atención ya que son lenguajes muy importantes bajo mi punto de vista.
+Hablando del puesto de trabajo me llama mucho la atención ser administrador del SGBD ya que domino y me interesa bastante la materia. </template>
+  </category>
+
+  <!-- regla 17 -->
+  <category>
+  <pattern> ^ [jefe dueno lider empresario] ^ no ^ [tiene lleva] ^ razon ^ </pattern>
+  <template>No me gusta poner en duda a mi jefe. Cuando puedo pensar que no tiene la razón, manejo con él diferentes opciones alternativas, pero nunca cuestionándolo ya que puede ser que yo esté equivocado. </template>
+  </category>
+
+  <!-- regla 18 -->
+  <category>
+  <pattern> ^ [deb+ te+ ] ^ [elegir+ escoger+ seleccionar+ coger+ ] ^ (a) (ti) </pattern>
+  <template>Creo que sería una pieza importante en la empresa ya que domino bastante la materia que trata este puesto, y pienso que una persona joven como yo sería de gran ayuda para potenciar la creatividad de la empresa. </template>
+  </category>
+
+</aiml>

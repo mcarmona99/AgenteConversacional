@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+  <!-- LAS REGLAS 0 SON PARA CANCELAR ACCIONES QUE REQUIEREN CONVERSACION -->
+  <!-- Regla 0 -->
+  <topic name="nueva">
+  <category>
+    <pattern> $ cancelar accion</pattern>
+    <template>
+Me olvido de la accion actual. <think><set name="topic">unknown</set></think>
+    </template>
+  </category>
+</topic>
+
+<!-- Regla 0 -->
+<topic name="plataforma">
+<category>
+  <pattern> $ cancelar accion</pattern>
+  <template>
+Me olvido de la accion actual. <think><set name="topic">unknown</set></think>
+  </template>
+</category>
+</topic>
+
+<!-- Regla 0 -->
+<topic name="genero">
+<category>
+  <pattern> $ cancelar accion</pattern>
+  <template>
+Me olvido de la accion actual. <think><set name="topic">unknown</set></think>
+  </template>
+</category>
+</topic>
+
+<!-- Regla 0 -->
+<topic name="descripcion">
+<category>
+  <pattern> $ cancelar accion</pattern>
+  <template>
+Me olvido de la accion actual. <think><set name="topic">unknown</set></think>
+  </template>
+</category>
+</topic>
+
+<!-- Regla 0 -->
+<topic name="idiomasaudio">
+<category>
+  <pattern> $ cancelar accion</pattern>
+  <template>
+Me olvido de la accion actual. <think><set name="topic">unknown</set></think>
+  </template>
+</category>
+</topic>
+
+<!-- Regla 0 -->
+<topic name="idiomassubtitulos">
+<category>
+  <pattern> $ cancelar accion</pattern>
+  <template>
+Me olvido de la accion actual. <think><set name="topic">unknown</set></think>
+  </template>
+</category>
+</topic>
+
+<!-- Regla 0 -->
+<topic name="web">
+<category>
+  <pattern> $ cancelar accion</pattern>
+  <template>
+Me olvido de la accion actual. <think><set name="topic">unknown</set></think>
+  </template>
+</category>
+</topic>
+
+<!-- Regla 0 -->
+<topic name="titcap">
+<category>
+  <pattern> $ cancelar accion</pattern>
+  <template>
+Me olvido de la accion actual. <think><set name="topic">unknown</set></think>
+  </template>
+</category>
+</topic>
+
+<!-- Regla 0 -->
+<topic name="durcap">
+<category>
+  <pattern> $ cancelar accion</pattern>
+  <template>
+Me olvido de la accion actual. <think><set name="topic">unknown</set></think>
+  </template>
+</category>
+</topic>
+
+<!-- Regla 0 -->
+<topic name="temp">
+<category>
+  <pattern> $ cancelar accion</pattern>
+  <template>
+Me olvido de la accion actual. <think><set name="topic">unknown</set></think>
+  </template>
+</category>
+</topic>
+
+<!-- Regla 0 -->
+<topic name="nuevocap">
+<category>
+  <pattern> $ cancelar accion</pattern>
+  <template>
+Me olvido de la accion actual. <think><set name="topic">unknown</set></think>
+  </template>
+</category>
+</topic>
+
+<!-- Regla 0 -->
+<topic name="nuevocapduracion">
+<category>
+  <pattern> $ cancelar accion</pattern>
+  <template>
+Me olvido de la accion actual. <think><set name="topic">unknown</set></think>
+  </template>
+</category>
+</topic>
+
+  <!-- Regla 1a -->
+  <category>
+    <pattern>de que va (la serie) <set>seriesnetflix</set> </pattern>
+    <template>
+La serie "<star index="1"/>" tiene la siguiente descripcion:
+<srai>DECODE <map><name><star index="1"/></name>sinopsis</map></srai>
+    </template>
+  </category>
+
+  <!-- Regla 1b -->
+  <category>
+    <pattern>de que va (la serie) <set>seriesprimevideo</set> </pattern>
+    <template>
+La serie "<star index="1"/>" tiene la siguiente descripcion:
+<srai>DECODE <map><name><star index="1"/></name>sinopsis</map></srai>
+    </template>
+  </category>
+
+  <!-- Regla 2 -->
+  <category>
+    <pattern>de que va (la serie) * </pattern>
+    <template>
+La serie "<star/>" no está disponible en el catálogo.
+¿Quieres anadirla?
+      <think>
+         <set name="topic"> nueva </set>
+        <set name="serieaanadir"><star/></set>
+      </think>
+    </template>
+  </category>
+
+
+
+  <!-- Regla 2a -->
+  <topic name="nueva">
+
+  <category>
+    <pattern> si ^ </pattern>
+    <template>
+Ok, crea en la carpeta maps un archivo llamado <get name="serieaanadir"/>.txt.
+Cuando lo hagas, reiniciame y al volver pide que anada la serie <get name="serieaanadir"/>.
+      <think> <set name="topic">unknown</set></think>
+    </template>
+  </category>
+
+  </topic>
+
+  <!-- Regla 2a(contestacion negativa) -->
+  <topic name="nueva">
+
+  <category>
+    <pattern> no ^ </pattern>
+    <template>
+De acuerdo. Disfruta de tus series!
+      <think> <set name="topic">unknown</set></think>
+    </template>
+  </category>
+
+  </topic>
+
+  <!-- Regla 2b -->
+  <category>
+    <pattern>anade la serie * </pattern>
+    <template>
+Recuerda que para esta accion, deberias de haber creado en maps el archivo <star/>.txt.
+Dime la plataforma a la que pertenece (si no has creado el archivo, créalo y repíteme la orden)
+      <think>
+        <set name="topic">plataforma</set>
+        <set name="nombreserie"><star/></set>
+      </think>
+    </template>
+  </category>
+
+  <!-- Regla 2c -->
+  <topic name="plataforma">
+  <category>
+    <pattern> * </pattern>
+    <template>
+      <think>
+        <set name="platnuevaserie"><star/></set>
+        <set name="topic">genero</set>
+      </think>
+A que genero pertenece.
+    </template>
+  </category>
+
+  </topic>
+
+  <!-- Regla 2d -->
+  <topic name="genero">
+  <category>
+    <pattern> * </pattern>
+    <template>
+      <think>
+        <set name="gennuevaserie"> <star/></set>
+        <set name="topic">descripcion</set>
+      </think>
+Dame una descripcion de la serie
+    </template>
+  </category>
+
+  </topic>
+
+  <!-- Regla 2e -->
+  <topic name="descripcion">
+  <category>
+    <pattern> * </pattern>
+    <template>
+      <think>
+        <set name="descnuevaserie"><star/></set>
+        <set name="topic">idiomasaudio</set>
+      </think>
+Idiomas del audio
+    </template>
+  </category>
+
+  </topic>
+
+  <!-- Regla 2f -->
+  <topic name="idiomasaudio">
+  <category>
+    <pattern> * </pattern>
+    <template>
+      <think>
+        <set name="idiomasnuevaserie"><star/></set>
+        <set name="topic">idiomassubtitulos</set>
+      </think>
+Idiomas de los subtitulos
+    </template>
+  </category>
+
+  </topic>
+
+  <!-- Regla 2g -->
+  <topic name="idiomassubtitulos">
+  <category>
+    <pattern> * </pattern>
+    <template>
+      <think>
+        <set name="idiomassubnuevaserie"><star/></set>
+        <set name="topic">web</set>
+      </think>
+Dime una pagina web de la serie
+    </template>
+  </category>
+
+  </topic>
+
+  <!-- Regla 2h -->
+  <topic name="web">
+  <category>
+    <pattern> * </pattern>
+    <template>
+      <think>
+        <set name="pagweb"><star/></set>
+        <set name="topic">capitulosnuevos</set>
+        <addtoset>
+          <name>series<get name="platnuevaserie"/></name>
+          <key><get name="nombreserie"/></key>
+        </addtoset>
+        <addtomap>
+          <name><get name="nombreserie"/></name>
+          <key>genero</key>
+          <value><srai>code_fields <get name="gennuevaserie"/></srai></value>
+        </addtomap>
+        <addtomap>
+          <name><get name="nombreserie"/></name>
+          <key>idiomas</key>
+          <value><srai>code_fields <get name="idiomasnuevaserie"/></srai></value>
+        </addtomap>
+        <addtomap>
+          <name><get name="nombreserie"/></name>
+          <key>subtitulos</key>
+          <value><srai>code_fields <get name="idiomassubnuevaserie"/></srai></value>
+        </addtomap>
+        <addtomap>
+          <name><get name="nombreserie"/></name>
+          <key>sinopsis</key>
+          <value><srai>CODE <get name="descnuevaserie"/></srai></value>
+        </addtomap>
+        <addtomap>
+          <name><get name="nombreserie"/></name>
+          <key>web</key>
+          <value><srai>CODE <get name="pagweb"/></srai></value>
+        </addtomap>
+
+        <!-- anadir los idiomas nuevos al set de idiomas-->
+        <set var="item"><srai>TOP <get name="idiomasnuevaserie"/></srai></set>
+        <set var="lista"><get name="idiomasnuevaserie"/></set>
+        <condition var="item">
+          <li value="NIL">
+
+          </li>
+          <li value="$">
+
+          </li>
+          <li>
+              <addtoset>
+                <name>idiomas</name>
+                <key><get var="item"/></key>
+              </addtoset>
+              <set var="lista"><srai>REMAIN <get var="lista"/></srai></set>
+              <set var="item"><srai>TOP <get var="lista"/></srai></set>
+            <loop/>
+          </li>
+        </condition>
+
+        <!-- anadir los subtitulos nuevos al set de idiomas-->
+        <set var="item"><srai>TOP <get name="idiomassubnuevaserie"/></srai></set>
+        <set var="lista"><get name="idiomassubnuevaserie"/></set>
+        <condition var="item">
+          <li value="NIL">
+
+          </li>
+          <li value="$">
+
+          </li>
+          <li>
+              <addtoset>
+                <name>idiomas</name>
+                <key><get var="item"/></key>
+              </addtoset>
+              <set var="lista"><srai>REMAIN <get var="lista"/></srai></set>
+              <set var="item"><srai>TOP <get var="lista"/></srai></set>
+            <loop/>
+          </li>
+        </condition>
+
+        <!-- anadir los generos nuevos al set de generos-->
+        <set var="item"><srai>TOP <get name="gennuevaserie"/></srai></set>
+        <set var="lista"><get name="gennuevaserie"/></set>
+        <condition var="item">
+          <li value="NIL">
+
+          </li>
+          <li value="$">
+
+          </li>
+          <li>
+              <addtoset>
+                <name>generos</name>
+                <key><get var="item"/></key>
+              </addtoset>
+              <set var="lista"><srai>REMAIN <get var="lista"/></srai></set>
+              <set var="item"><srai>TOP <get var="lista"/></srai></set>
+            <loop/>
+          </li>
+        </condition>
+
+      </think>
+Serie creada, avisame si quieres anadir capitulos (he anadido tambien los nuevos idiomas y generos)
+    </template>
+  </category>
+
+  </topic>
+
+  <!-- Regla 2i -->
+  <topic name="capitulosnuevos">
+  <category>
+    <pattern> ^ no ^ </pattern>
+    <template>
+      <think>
+        <set name="topic">unknown</set>
+      </think>
+Vale, disfruta de tus series!
+    </template>
+  </category>
+
+  </topic>
+
+  <!-- Regla 3 -->
+  <category>
+    <pattern>anade (un) (nuevo) [capitulo episodio] [de a] la temporada <set>number</set> de (la serie) * </pattern>
+    <template>
+      <think>
+      <set name="serie"><star index="2"/></set>
+      <set name="temporada"><star index="1"/></set>
+      <set name="topic">titcap</set>
+    </think>
+Dime el titulo del capitulo que quieres anadir.
+    </template>
+  </category>
+
+  <!-- Regla 4-->
+  <topic name="titcap">
+
+    <category>
+      <pattern> * </pattern>
+      <template>
+        <think>
+        <set name="titulo"><star/></set>
+        <set name="topic">durcap</set>
+      </think>
+        Dime la duracion del capitulo: <star/>
+      </template>
+    </category>
+
+  </topic>
+
+  <!-- Regla 5 -->
+  <topic name="durcap">
+
+    <category>
+      <pattern><set>number</set></pattern>
+      <template>
+      <think>
+        <set name="duracion"><star/></set>
+        <set name="topic">unknown</set>
+        <set var="infoasociada"><map><name><get name="serie"/></name>temporada<get name="temporada"/></map></set>
+        <modifymap>
+          <name><get name="serie"/></name>
+          <key>temporada<get name="temporada"/></key>
+          <value><get var="infoasociada"/><srai>CODE <get name="titulo"/></srai>@<get name="duracion"/>@</value>
+        </modifymap>
+      </think>
+        Capitulo anadido correctamente.
+      </template>
+    </category>
+
+  </topic>
+
+
+
+  <!-- Regla 6 -->
+  <category>
+    <pattern>anade (una) (nueva) temporada a (la serie) * </pattern>
+    <template>
+      <think>
+      <set name="serie"><star index="1"/></set>
+      <set name="topic">temp</set>
+    </think>
+Dime el numero de la nueva temporada para la serie <star/>
+    </template>
+  </category>
+
+  <!-- Regla 7-->
+  <topic name="temp">
+
+    <category>
+      <pattern> * </pattern>
+      <template>
+        <think>
+        <set name="temporada"><star/></set>
+        <set name="topic">nuevocap</set>
+      </think>
+Dime el titulo del primer capitulo de la temporada.
+      </template>
+    </category>
+
+  </topic>
+
+  <!-- Regla 8-->
+  <topic name="nuevocap">
+
+    <category>
+      <pattern> * </pattern>
+      <template>
+        <think>
+        <set name="titulo"><star/></set>
+        <set name="topic">nuevocapduracion</set>
+      </think>
+        Dime la duracion del capitulo: <star/>
+      </template>
+    </category>
+
+  </topic>
+
+  <!-- Regla 9 -->
+  <topic name="nuevocapduracion">
+
+    <category>
+      <pattern><set>number</set></pattern>
+      <template>
+      <think>
+        <set name="duracion"><star/></set>
+        <set name="topic">unknown</set>
+        <addtomap>
+          <name><get name="serie"/></name>
+          <key>temporada<get name="temporada"/></key>
+          <value><srai>CODE <get name="titulo"/></srai>@<get name="duracion"/>@</value>
+        </addtomap>
+      </think>
+        Temporada nueva y primer capitulo anadidos correctamente.
+      </template>
+    </category>
+
+  </topic>
+
+
+
+
+
+</aiml>

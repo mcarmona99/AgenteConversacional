@@ -1,0 +1,6 @@
+epiactual:1
+temporada:1
+minactual:0
+enreproduccion:no
+idioma:
+subtitulos:

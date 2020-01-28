@@ -1,0 +1,1637 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+
+  <!-- Regla 0 -->
+  <category>
+    <pattern> reproduce ^ </pattern>
+    <template>
+      ¿Quién eres?
+    </template>
+  </category>
+
+  <!-- Regla 0 -->
+  <topic name="marta">
+  <category>
+    <pattern> cerrar modo visionado </pattern>
+    <template>
+      <think>
+        <set name="tiempo">0</set>
+        <set name="topic">unknown</set>
+      </think>
+      Modo visionado cerrado.
+    </template>
+  </category>
+</topic>
+
+<!-- Regla 0 -->
+<topic name="carlos">
+<category>
+  <pattern> cerrar modo visionado </pattern>
+  <template>
+    <think>
+      <set name="tiempo">0</set>
+      <set name="topic">unknown</set>
+    </think>
+    Modo visionado cerrado.
+  </template>
+</category>
+</topic>
+
+  <!-- nivel 3 -->
+  <!-- Regla 1 -->
+  <category>
+    <pattern> [empezar reiniciar] modo visionado </pattern>
+    <template>
+      <think>
+        <set name="tiempo">0</set>
+      </think>
+      Tiempo de visionado reiniciado.
+    </template>
+  </category>
+
+  <!-- Regla 2A -->
+  <category>
+    <pattern> soy marta </pattern>
+    <template>
+      <think>
+        <set name="topic">marta</set>
+      </think>
+      De acuerdo. Hola Marta!
+    </template>
+  </category>
+
+  <!-- Regla 2B -->
+  <category>
+    <pattern> soy carlos </pattern>
+    <template>
+      <think>
+        <set name="topic">carlos</set>
+      </think>
+      De acuerdo. Hola Carlos!
+    </template>
+  </category>
+
+  <!-- Regla 3a -->
+  <topic name="marta">
+  <category>
+    <pattern> reproduce [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] </pattern>
+    <template>
+      <think>
+      <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+      <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+      <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+      <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+      <modifymap>
+        <name><get name="topic"/><star/></name>
+        <key>enreproduccion</key>
+        <value>si</value>
+      </modifymap>
+      <addtoset>
+        <name>enreproduccion<get name="topic"/></name>
+        <key><srai>code <star/></srai></key>
+      </addtoset>
+      </think>
+      Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.
+
+    </template>
+  </category>
+  </topic>
+
+  <!-- Regla 3b -->
+  <topic name="carlos">
+  <category>
+    <pattern> reproduce [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] </pattern>
+    <template>
+      <think>
+      <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+      <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+      <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+      <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+      <modifymap>
+        <name><get name="topic"/><star/></name>
+        <key>enreproduccion</key>
+        <value>si</value>
+      </modifymap>
+      <addtoset>
+        <name>enreproduccion<get name="topic"/></name>
+        <key><srai>code <star/></srai></key>
+      </addtoset>
+      </think>
+      Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.
+
+    </template>
+  </category>
+  </topic>
+
+  <!-- Regla 4a -->
+  <topic name="marta">
+  <category>
+    <pattern> pausa [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] </pattern>
+    <template>
+      <think>
+      <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+      <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+      <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+      <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+      <modifymap>
+        <name><get name="topic"/><star/></name>
+        <key>enreproduccion</key>
+        <value>no</value>
+      </modifymap>
+      <removefromset>
+        <name>enreproduccion<get name="topic"/></name>
+        <key><srai>code <star/></srai></key>
+      </removefromset>
+      </think>
+      Pausado <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.
+
+    </template>
+  </category>
+  </topic>
+
+  <!-- Regla 4b -->
+  <topic name="carlos">
+  <category>
+    <pattern> pausa [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] </pattern>
+    <template>
+      <think>
+      <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+      <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+      <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+      <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+      <modifymap>
+        <name><get name="topic"/><star/></name>
+        <key>enreproduccion</key>
+        <value>no</value>
+      </modifymap>
+      <removefromset>
+        <name>enreproduccion<get name="topic"/></name>
+        <key><srai>code <star/></srai></key>
+      </removefromset>
+      </think>
+      Pausado <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.
+
+    </template>
+  </category>
+  </topic>
+
+
+  <!-- Regla 5a -->
+  <topic name="marta">
+  <category>
+    <pattern> reproduce [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] por el minuto <set>number</set> </pattern>
+    <template>
+      <think>
+        <set var="minutonuevo"><star index="2"/></set>
+        <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+        <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+
+        <set var="duracioncapitulo"><srai> DURACION CAPITULO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+        <set var="nombrecap"><srai> EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+
+        <set var="comparacion"><srai> <get var="minutonuevo"/> MAYOR QUE <get var="duracioncapitulo"/> </srai></set>
+        <condition var="comparacion">
+          <li><value><get var="minutonuevo"/></value>
+            <modifymap>
+              <name><get name="topic"/><star/></name>
+              <key>minactual</key>
+              <value>0</value>
+            </modifymap>
+              <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+            <set var="solucion">Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+            <set var="solucion"><get var="solucion"/>. Capitulo acabado.</set>
+          </li>
+          <li><value><get var="duracioncapitulo"/></value>
+            <modifymap>
+              <name><get name="topic"/><star/></name>
+              <key>minactual</key>
+              <value><get var="minutonuevo"/></value>
+            </modifymap>
+              <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+            <set var="solucion">Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+
+          </li>
+
+        </condition>
+
+        <modifymap>
+          <name><get name="topic"/><star/></name>
+          <key>enreproduccion</key>
+          <value>si</value>
+        </modifymap>
+        <addtoset>
+          <name>enreproduccion<get name="topic"/></name>
+          <key><srai>code <star/></srai></key>
+        </addtoset>
+        </think>
+        <get var="solucion"/>
+
+
+    </template>
+  </category>
+  </topic>
+
+  <!-- Regla 5b -->
+  <topic name="carlos">
+  <category>
+    <pattern> reproduce [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] por el minuto <set>number</set> </pattern>
+    <template>
+      <think>
+        <set var="minutonuevo"><star index="2"/></set>
+        <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+        <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+
+        <set var="duracioncapitulo"><srai> DURACION CAPITULO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+        <set var="nombrecap"><srai> EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+
+        <set var="comparacion"><srai> <get var="minutonuevo"/> MAYOR QUE <get var="duracioncapitulo"/> </srai></set>
+        <condition var="comparacion">
+          <li><value><get var="minutonuevo"/></value>
+            <modifymap>
+              <name><get name="topic"/><star/></name>
+              <key>minactual</key>
+              <value>0</value>
+            </modifymap>
+              <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+            <set var="solucion">Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+            <set var="solucion"><get var="solucion"/>. Capitulo acabado.</set>
+          </li>
+          <li><value><get var="duracioncapitulo"/></value>
+            <modifymap>
+              <name><get name="topic"/><star/></name>
+              <key>minactual</key>
+              <value><get var="minutonuevo"/></value>
+            </modifymap>
+              <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+            <set var="solucion">Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+
+          </li>
+
+        </condition>
+
+        <modifymap>
+          <name><get name="topic"/><star/></name>
+          <key>enreproduccion</key>
+          <value>si</value>
+        </modifymap>
+        <addtoset>
+          <name>enreproduccion<get name="topic"/></name>
+          <key><srai>code <star/></srai></key>
+        </addtoset>
+        </think>
+        <get var="solucion"/>
+
+
+    </template>
+  </category>
+  </topic>
+
+
+  <!-- Regla 6a -->
+  <topic name="marta">
+  <category>
+    <pattern> adelanta (la reproduccion de) [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] <set>number</set> (minutos) </pattern>
+    <template>
+      <think>
+        <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+        <set var="minutonuevo"><srai> <star index="2"/> mas <get var="minutoactual"/></srai></set>
+        <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+        <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+        <set var="duracioncapitulo"><srai> DURACION CAPITULO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+        <set var="nombrecap"><srai> EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+
+        <set var="comparacion"><srai> <get var="minutonuevo"/> MAYOR QUE <get var="duracioncapitulo"/> </srai></set>
+        <condition var="comparacion">
+          <li><value><get var="minutonuevo"/></value>
+            <modifymap>
+              <name><get name="topic"/><star/></name>
+              <key>minactual</key>
+              <value>0</value>
+            </modifymap>
+            <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+            <set var="solucion">Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+            <set var="solucion"><get var="solucion"/>Capitulo acabado.</set>
+          </li>
+          <li><value><get var="duracioncapitulo"/></value>
+            <modifymap>
+              <name><get name="topic"/><star/></name>
+              <key>minactual</key>
+              <value><get var="minutonuevo"/></value>
+            </modifymap>
+            <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+            <set var="solucion">Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+
+          </li>
+
+        </condition>
+
+
+        <modifymap>
+          <name><get name="topic"/><star/></name>
+          <key>enreproduccion</key>
+          <value>si</value>
+        </modifymap>
+        <addtoset>
+          <name>enreproduccion<get name="topic"/></name>
+          <key><srai>code <star/></srai></key>
+        </addtoset>
+        </think>
+        <get var="solucion"/>
+
+
+    </template>
+  </category>
+  </topic>
+
+  <!-- Regla 6b -->
+  <topic name="carlos">
+  <category>
+    <pattern> adelanta (la reproduccion de) [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] <set>number</set> (minutos) </pattern>
+    <template>
+      <think>
+        <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+        <set var="minutonuevo"><srai> <star index="2"/> mas <get var="minutoactual"/></srai></set>
+        <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+        <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+        <set var="duracioncapitulo"><srai> DURACION CAPITULO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+        <set var="nombrecap"><srai> EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+
+        <set var="comparacion"><srai> <get var="minutonuevo"/> MAYOR QUE <get var="duracioncapitulo"/> </srai></set>
+        <condition var="comparacion">
+          <li><value><get var="minutonuevo"/></value>
+            <modifymap>
+              <name><get name="topic"/><star/></name>
+              <key>minactual</key>
+              <value>0</value>
+            </modifymap>
+            <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+            <set var="solucion">Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+            <set var="solucion"><get var="solucion"/>Capitulo acabado.</set>
+          </li>
+          <li><value><get var="duracioncapitulo"/></value>
+            <modifymap>
+              <name><get name="topic"/><star/></name>
+              <key>minactual</key>
+              <value><get var="minutonuevo"/></value>
+            </modifymap>
+            <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+            <set var="solucion">Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+
+          </li>
+
+        </condition>
+
+
+        <modifymap>
+          <name><get name="topic"/><star/></name>
+          <key>enreproduccion</key>
+          <value>si</value>
+        </modifymap>
+        <addtoset>
+          <name>enreproduccion<get name="topic"/></name>
+          <key><srai>code <star/></srai></key>
+        </addtoset>
+        </think>
+        <get var="solucion"/>
+
+
+    </template>
+  </category>
+  </topic>
+
+  <!-- Regla 7a -->
+  <topic name="marta">
+  <category>
+    <pattern> retrasa (la reproduccion de) [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] <set>number</set> (minutos) </pattern>
+    <template>
+      <think>
+        <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+        <set var="minutonuevo"><srai> <get var="minutoactual"/> MENOS <star index="2"/></srai></set>
+        <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+        <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+        <set var="duracioncapitulo"><srai> DURACION CAPITULO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+        <set var="nombrecap"><srai> EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+
+        <set var="comparacion"><srai> <get var="minutonuevo"/> MAYOR QUE <get var="duracioncapitulo"/> </srai></set>
+        <condition var="comparacion">
+          <li><value><get var="minutonuevo"/></value>
+            <modifymap>
+              <name><get name="topic"/><star/></name>
+              <key>minactual</key>
+              <value>0</value>
+            </modifymap>
+            <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+            <set var="solucion">Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+            <set var="solucion"><get var="solucion"/>Capitulo acabado.</set>
+          </li>
+          <li><value><get var="duracioncapitulo"/></value>
+            <modifymap>
+              <name><get name="topic"/><star/></name>
+              <key>minactual</key>
+              <value><get var="minutonuevo"/></value>
+            </modifymap>
+            <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+            <set var="solucion">Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+
+          </li>
+
+        </condition>
+
+
+        <modifymap>
+          <name><get name="topic"/><star/></name>
+          <key>enreproduccion</key>
+          <value>si</value>
+        </modifymap>
+        <addtoset>
+          <name>enreproduccion<get name="topic"/></name>
+          <key><srai>code <star/></srai></key>
+        </addtoset>
+        </think>
+        <get var="solucion"/>
+
+
+    </template>
+  </category>
+  </topic>
+
+  <!-- Regla 7b -->
+  <topic name="carlos">
+    <category>
+      <pattern> retrasa (la reproduccion de) [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] <set>number</set> (minutos) </pattern>
+      <template>
+        <think>
+          <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+          <set var="minutonuevo"><srai> <get var="minutoactual"/> MENOS <star index="2"/></srai></set>
+          <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+          <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+          <set var="duracioncapitulo"><srai> DURACION CAPITULO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+          <set var="nombrecap"><srai> EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+
+          <set var="comparacion"><srai> <get var="minutonuevo"/> MAYOR QUE <get var="duracioncapitulo"/> </srai></set>
+          <condition var="comparacion">
+            <li><value><get var="minutonuevo"/></value>
+              <modifymap>
+                <name><get name="topic"/><star/></name>
+                <key>minactual</key>
+                <value>0</value>
+              </modifymap>
+              <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+              <set var="solucion">Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+              <set var="solucion"><get var="solucion"/>Capitulo acabado.</set>
+            </li>
+            <li><value><get var="duracioncapitulo"/></value>
+              <modifymap>
+                <name><get name="topic"/><star/></name>
+                <key>minactual</key>
+                <value><get var="minutonuevo"/></value>
+              </modifymap>
+              <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+              <set var="solucion">Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+
+            </li>
+
+          </condition>
+
+
+          <modifymap>
+            <name><get name="topic"/><star/></name>
+            <key>enreproduccion</key>
+            <value>si</value>
+          </modifymap>
+          <addtoset>
+            <name>enreproduccion<get name="topic"/></name>
+            <key><srai>code <star/></srai></key>
+          </addtoset>
+          </think>
+          <get var="solucion"/>
+
+
+      </template>
+    </category>
+    </topic>
+
+    <!-- Regla 8a -->
+    <topic name="marta">
+    <category>
+      <pattern> PASAN <set>number</set> (minutos) </pattern>
+      <template>
+
+        <think>
+          <set var="solucion"></set>
+          <set var="salida"><srai> SIMUL <star/> </srai>. </set>
+          <set var="lista"><readset>enreproduccion<get name="topic"/></readset></set>
+          <set var="item"><lowercase><srai>top <get var="lista"/></srai></lowercase></set>
+          <condition var="item">
+            <li value="NIL"></li>
+            <li value="$"></li>
+            <li>
+              <set var="item"><srai>decode <lowercase><get var="item"/></lowercase></srai></set>
+              <set var="minutoactual"><map><name><get name="topic"/><get var="item"/></name>minactual</map></set>
+              <set var="minutonuevo"><srai> <star/> mas <get var="minutoactual"/></srai></set>
+              <set var="numerocap"><map><name><get name="topic"/><get var="item"/></name>epiactual</map></set>
+              <set var="tempactual"><map><name><get name="topic"/><get var="item"/></name>temporada</map></set>
+              <set var="duracioncapitulo"><srai> DURACION CAPITULO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <get var="item"/></srai></set>
+              <set var="nombrecap"><srai> EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <get var="item"/></srai></set>
+
+              <set var="comparacion"><srai> <get var="minutonuevo"/> MAYOR QUE <get var="duracioncapitulo"/> </srai></set>
+              <condition var="comparacion">
+                <li><value><get var="minutonuevo"/></value>
+                  <modifymap>
+                    <name><get name="topic"/><get var="item"/></name>
+                    <key>minactual</key>
+                    <value>0</value>
+                  </modifymap>
+                  <set var="minutoactual"><map><name><get name="topic"/><get var="item"/></name>minactual</map></set>
+                  <set var="solucion"><get var="solucion"/>Reproduciendo <get var="item"/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+                  <set var="solucion"><get var="solucion"/>Capitulo acabado.</set>
+                </li>
+                <li><value><get var="duracioncapitulo"/></value>
+                  <modifymap>
+                    <name><get name="topic"/><get var="item"/></name>
+                    <key>minactual</key>
+                    <value><get var="minutonuevo"/></value>
+                  </modifymap>
+                  <set var="minutoactual"><map><name><get name="topic"/><get var="item"/></name>minactual</map></set>
+                  <set var="solucion"><get var="solucion"/>Reproduciendo <get var="item"/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+
+                </li>
+
+              </condition>
+              <set var="lista"><srai> remain <get var="lista"/></srai></set>
+              <set var="item"><srai> top <get var="lista"/></srai></set>
+          <loop/>
+          </li>
+          </condition>
+        </think>
+
+        <get var="salida"/><get var="solucion"/>
+
+      </template>
+    </category>
+    </topic>
+
+    <!-- Regla 8b -->
+    <topic name="carlos">
+    <category>
+      <pattern> PASAN <set>number</set> (minutos) </pattern>
+      <template>
+
+        <think>
+          <set var="solucion"></set>
+          <set var="salida"><srai> SIMUL <star/> </srai>. </set>
+          <set var="lista"><readset>enreproduccion<get name="topic"/></readset></set>
+          <set var="item"><lowercase><srai>top <get var="lista"/></srai></lowercase></set>
+          <condition var="item">
+            <li value="NIL"></li>
+            <li value="$"></li>
+            <li>
+              <set var="item"><srai>decode <lowercase><get var="item"/></lowercase></srai></set>
+              <set var="minutoactual"><map><name><get name="topic"/><get var="item"/></name>minactual</map></set>
+              <set var="minutonuevo"><srai> <star/> mas <get var="minutoactual"/></srai></set>
+              <set var="numerocap"><map><name><get name="topic"/><get var="item"/></name>epiactual</map></set>
+              <set var="tempactual"><map><name><get name="topic"/><get var="item"/></name>temporada</map></set>
+              <set var="duracioncapitulo"><srai> DURACION CAPITULO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <get var="item"/></srai></set>
+              <set var="nombrecap"><srai> EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <get var="item"/></srai></set>
+
+              <set var="comparacion"><srai> <get var="minutonuevo"/> MAYOR QUE <get var="duracioncapitulo"/> </srai></set>
+              <condition var="comparacion">
+                <li><value><get var="minutonuevo"/></value>
+                  <modifymap>
+                    <name><get name="topic"/><get var="item"/></name>
+                    <key>minactual</key>
+                    <value>0</value>
+                  </modifymap>
+                  <set var="minutoactual"><map><name><get name="topic"/><get var="item"/></name>minactual</map></set>
+                  <set var="solucion"><get var="solucion"/>Reproduciendo <get var="item"/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+                  <set var="solucion"><get var="solucion"/>Capitulo acabado.</set>
+                </li>
+                <li><value><get var="duracioncapitulo"/></value>
+                  <modifymap>
+                    <name><get name="topic"/><get var="item"/></name>
+                    <key>minactual</key>
+                    <value><get var="minutonuevo"/></value>
+                  </modifymap>
+                  <set var="minutoactual"><map><name><get name="topic"/><get var="item"/></name>minactual</map></set>
+                  <set var="solucion"><get var="solucion"/>Reproduciendo <get var="item"/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+
+                </li>
+
+              </condition>
+              <set var="lista"><srai> remain <get var="lista"/></srai></set>
+              <set var="item"><srai> top <get var="lista"/></srai></set>
+          <loop/>
+          </li>
+          </condition>
+        </think>
+
+        <get var="salida"/><get var="solucion"/>
+
+      </template>
+    </category>
+    </topic>
+
+
+    <!-- Regla 9a -->
+    <topic name="marta">
+    <category>
+      <pattern>pon el siguiente [capitulo episodio] de [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] </pattern>
+      <template>
+        <think>
+        <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+        <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+        <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+        <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+        <modifymap>
+          <name><get name="topic"/><star/></name>
+          <key>epiactual</key>
+          <value><map name="successor"><get var="numerocap"/></map></value>
+        </modifymap>
+
+        <modifymap>
+          <name><get name="topic"/><star/></name>
+          <key>enreproduccion</key>
+          <value>si</value>
+        </modifymap>
+        <modifymap>
+          <name><get name="topic"/><star/></name>
+          <key>minactual</key>
+          <value>0</value>
+        </modifymap>
+        <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+        <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+        <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+        <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+        <addtoset>
+          <name>enreproduccion<get name="topic"/></name>
+          <key><srai>code <star/></srai></key>
+        </addtoset>
+        </think>
+        Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.
+
+      </template>
+    </category>
+    </topic>
+
+    <!-- Regla 9b -->
+    <topic name="carlos">
+      <category>
+        <pattern>pon el siguiente [capitulo episodio] de [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] </pattern>
+        <template>
+          <think>
+          <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+          <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+          <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+          <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+          <modifymap>
+            <name><get name="topic"/><star/></name>
+            <key>epiactual</key>
+            <value><map name="successor"><get var="numerocap"/></map></value>
+          </modifymap>
+
+          <modifymap>
+            <name><get name="topic"/><star/></name>
+            <key>enreproduccion</key>
+            <value>si</value>
+          </modifymap>
+          <modifymap>
+            <name><get name="topic"/><star/></name>
+            <key>minactual</key>
+            <value>0</value>
+          </modifymap>
+          <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+          <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+          <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+          <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+          <addtoset>
+            <name>enreproduccion<get name="topic"/></name>
+            <key><srai>code <star/></srai></key>
+          </addtoset>
+          </think>
+          Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.
+
+        </template>
+      </category>
+      </topic>
+
+      <!-- Regla 10a -->
+      <topic name="marta">
+      <category>
+        <pattern>pon la siguiente temporada de [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] </pattern>
+        <template>
+          <think>
+          <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+          <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+          <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+          <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+          <modifymap>
+            <name><get name="topic"/><star/></name>
+            <key>temporada</key>
+            <value><map name="successor"><get var="tempactual"/></map></value>
+          </modifymap>
+          <modifymap>
+            <name><get name="topic"/><star/></name>
+            <key>epiactual</key>
+            <value>1</value>
+          </modifymap>
+
+          <modifymap>
+            <name><get name="topic"/><star/></name>
+            <key>enreproduccion</key>
+            <value>si</value>
+          </modifymap>
+          <modifymap>
+            <name><get name="topic"/><star/></name>
+            <key>minactual</key>
+            <value>0</value>
+          </modifymap>
+          <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+          <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+          <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+          <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+          <addtoset>
+            <name>enreproduccion<get name="topic"/></name>
+            <key><srai>code <star/></srai></key>
+          </addtoset>
+          </think>
+          Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.
+
+        </template>
+      </category>
+      </topic>
+
+      <!-- Regla 10b -->
+      <topic name="carlos">
+        <category>
+          <pattern>pon la siguiente temporada de [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] </pattern>
+          <template>
+            <think>
+            <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+            <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+            <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+            <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+            <modifymap>
+              <name><get name="topic"/><star/></name>
+              <key>temporada</key>
+              <value><map name="successor"><get var="tempactual"/></map></value>
+            </modifymap>
+            <modifymap>
+              <name><get name="topic"/><star/></name>
+              <key>epiactual</key>
+              <value>1</value>
+            </modifymap>
+
+            <modifymap>
+              <name><get name="topic"/><star/></name>
+              <key>enreproduccion</key>
+              <value>si</value>
+            </modifymap>
+            <modifymap>
+              <name><get name="topic"/><star/></name>
+              <key>minactual</key>
+              <value>0</value>
+            </modifymap>
+            <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+            <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+            <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+            <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+            <addtoset>
+              <name>enreproduccion<get name="topic"/></name>
+              <key><srai>code <star/></srai></key>
+            </addtoset>
+            </think>
+            Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.
+
+          </template>
+        </category>
+        </topic>
+
+
+        <!-- Regla 11a -->
+        <topic name="marta">
+        <category>
+          <pattern>pon el idioma de [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] en <set>idiomas</set> </pattern>
+          <template>
+            <think>
+            <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+            <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+            <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+            <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+            <set var="idioma"><star index="2"/></set>
+            <set var="condicion"><srai><star/> IDIOMA <get var="idioma"/></srai></set>
+            <condition var="condicion">
+              <li value="Si">
+            <modifymap>
+              <name><get name="topic"/><star/></name>
+              <key>idioma</key>
+              <value><star index="2"/></value>
+            </modifymap>
+
+            <set var="salida"><star/> idioma cambiado a <star index="2"/></set>
+          </li>
+          <li><set var="salida"><star/> No se encuentra en ese idioma</set></li>
+          </condition>
+
+
+            </think>
+<get var="salida"/>
+          </template>
+        </category>
+        </topic>
+
+        <!-- Regla 11b -->
+        <topic name="carlos">
+          <category>
+            <pattern>pon el idioma de [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] en <set>idiomas</set> </pattern>
+            <template>
+              <think>
+              <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+              <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+              <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+              <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+              <set var="idioma"><star index="2"/></set>
+              <set var="condicion"><srai><star/> IDIOMA <get var="idioma"/></srai></set>
+              <condition var="condicion">
+                <li value="Si">
+              <modifymap>
+                <name><get name="topic"/><star/></name>
+                <key>idioma</key>
+                <value><star index="2"/></value>
+              </modifymap>
+
+              <set var="salida"><star/> idioma cambiado a <star index="2"/></set>
+            </li>
+            <li><set var="salida"><star/> No se encuentra en ese idioma</set></li>
+            </condition>
+
+
+              </think>
+  <get var="salida"/>
+            </template>
+          </category>
+          </topic>
+
+          <!-- Regla 12a -->
+          <topic name="marta">
+          <category>
+            <pattern>pon los subtitulos de [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] en <set>idiomas</set> </pattern>
+            <template>
+              <think>
+              <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+              <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+              <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+              <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+              <set var="idioma"><star index="2"/></set>
+              <set var="condicion"><srai><star/> SUBTITULOS <get var="idioma"/></srai></set>
+              <condition var="condicion">
+                <li value="Si">
+              <modifymap>
+                <name><get name="topic"/><star/></name>
+                <key>subtitulos</key>
+                <value><star index="2"/></value>
+              </modifymap>
+
+              <set var="salida"><star/> subtitulos cambiados a <star index="2"/></set>
+            </li>
+            <li><set var="salida"><star/> No se encuentra con esos subtitulos </set></li>
+            </condition>
+
+
+              </think>
+  <get var="salida"/>
+            </template>
+          </category>
+          </topic>
+
+          <!-- Regla 12b -->
+          <topic name="carlos">
+            <category>
+              <pattern>pon los subtitulos de [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] en <set>idiomas</set> </pattern>
+              <template>
+                <think>
+                <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+                <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+                <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+                <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+                <set var="idioma"><star index="2"/></set>
+                <set var="condicion"><srai><star/> SUBTITULOS <get var="idioma"/></srai></set>
+                <condition var="condicion">
+                  <li value="Si">
+                <modifymap>
+                  <name><get name="topic"/><star/></name>
+                  <key>subtitulos</key>
+                  <value><star index="2"/></value>
+                </modifymap>
+
+                <set var="salida"><star/> subtitulos cambiados a <star index="2"/></set>
+              </li>
+              <li><set var="salida"><star/> No se encuentra con esos subtitulos </set></li>
+              </condition>
+
+
+                </think>
+    <get var="salida"/>
+              </template>
+            </category>
+            </topic>
+
+
+            <!-- Regla 13a -->
+            <topic name="marta">
+            <category>
+              <pattern>quita los subtitulos de [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] </pattern>
+              <template>
+                <think>
+                <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+                <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+                <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+                <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+                <modifymap>
+                  <name><get name="topic"/><star/></name>
+                  <key>subtitulos</key>
+                  <value></value>
+                </modifymap>
+
+                <set var="salida"><star/> subtitulos quitados</set>
+                </think>
+    <get var="salida"/>
+              </template>
+            </category>
+            </topic>
+
+            <!-- Regla 13b -->
+            <topic name="carlos">
+              <category>
+                <pattern>quita los subtitulos de [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] </pattern>
+                <template>
+                  <think>
+                  <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+                  <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+                  <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+                  <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+                  <modifymap>
+                    <name><get name="topic"/><star/></name>
+                    <key>subtitulos</key>
+                    <value></value>
+                  </modifymap>
+
+                  <set var="salida"><star/> subtitulos quitados</set>
+                  </think>
+      <get var="salida"/>
+                </template>
+              </category>
+              </topic>
+
+              <!-- Regla 14a -->
+              <topic name="marta">
+                <category>
+                  <pattern> ha llegado carlos </pattern>
+                  <template>
+                    <think>
+                    <set name="topic">ambos</set>
+                    <set var="serieconjunta"><lowercase><readset>enreproduccionambos</readset></lowercase></set>
+                    <set var="numerocap"><map><name><get name="topic"/><get var="serieconjunta"/></name>epiactual</map></set>
+                    <set var="tempactual"><map><name><get name="topic"/><get var="serieconjunta"/></name>temporada</map></set>
+                    <set var="minutoactual"><map><name><get name="topic"/><get var="serieconjunta"/></name>minactual</map></set>
+                    <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <get var="serieconjunta"/></srai></set>
+                    <set var="lista">reproduciendo <get var="serieconjunta"/> capitulo <get var="nombrecap"/> minuto <get var="minutoactual"/> de la temporada <get var="tempactual"/></set>
+                    </think>
+De acuerdo, <get var="lista"/>  </template>
+                </category>
+                </topic>
+
+                <!-- Regla 14a -->
+                <topic name="carlos">
+                  <category>
+                    <pattern> ha llegado marta </pattern>
+                    <template>
+                      <think>
+                      <set name="topic">ambos</set>
+                      <set var="serieconjunta"><lowercase><readset>enreproduccionambos</readset></lowercase></set>
+                      <set var="numerocap"><map><name><get name="topic"/><get var="serieconjunta"/></name>epiactual</map></set>
+                      <set var="tempactual"><map><name><get name="topic"/><get var="serieconjunta"/></name>temporada</map></set>
+                      <set var="minutoactual"><map><name><get name="topic"/><get var="serieconjunta"/></name>minactual</map></set>
+                      <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <get var="serieconjunta"/></srai></set>
+                      <set var="lista">reproduciendo <get var="serieconjunta"/> capitulo <get var="nombrecap"/> minuto <get var="minutoactual"/> de la temporada <get var="tempactual"/></set>
+                      </think>
+  De acuerdo, <get var="lista"/>  </template>
+                  </category>
+                  </topic>
+
+
+
+
+
+
+
+
+<!-- PARTE DE AMBOS -->
+<!-- Regla 3b -->
+<topic name="ambos">
+<category>
+  <pattern> reproduce [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] </pattern>
+  <template>
+    <think>
+    <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+    <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+    <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+    <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+    <modifymap>
+      <name><get name="topic"/><star/></name>
+      <key>enreproduccion</key>
+      <value>si</value>
+    </modifymap>
+    <addtoset>
+      <name>enreproduccion<get name="topic"/></name>
+      <key><srai>code <star/></srai></key>
+    </addtoset>
+    </think>
+    Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.
+
+  </template>
+</category>
+</topic>
+<!-- Regla 4b -->
+<topic name="ambos">
+<category>
+  <pattern> pausa [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] </pattern>
+  <template>
+    <think>
+    <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+    <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+    <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+    <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+    <modifymap>
+      <name><get name="topic"/><star/></name>
+      <key>enreproduccion</key>
+      <value>no</value>
+    </modifymap>
+    <removefromset>
+      <name>enreproduccion<get name="topic"/></name>
+      <key><srai>code <star/></srai></key>
+    </removefromset>
+    </think>
+    Pausado <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.
+
+  </template>
+</category>
+</topic>
+<!-- Regla 5b -->
+<topic name="ambos">
+<category>
+  <pattern> reproduce [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] por el minuto <set>number</set> </pattern>
+  <template>
+    <think>
+      <set var="minutonuevo"><star index="2"/></set>
+      <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+      <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+
+      <set var="duracioncapitulo"><srai> DURACION CAPITULO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+      <set var="nombrecap"><srai> EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+
+      <set var="comparacion"><srai> <get var="minutonuevo"/> MAYOR QUE <get var="duracioncapitulo"/> </srai></set>
+      <condition var="comparacion">
+        <li><value><get var="minutonuevo"/></value>
+          <modifymap>
+            <name><get name="topic"/><star/></name>
+            <key>minactual</key>
+            <value>0</value>
+          </modifymap>
+            <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+          <set var="solucion">Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+          <set var="solucion"><get var="solucion"/>. Capitulo acabado.</set>
+        </li>
+        <li><value><get var="duracioncapitulo"/></value>
+          <modifymap>
+            <name><get name="topic"/><star/></name>
+            <key>minactual</key>
+            <value><get var="minutonuevo"/></value>
+          </modifymap>
+            <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+          <set var="solucion">Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+
+        </li>
+
+      </condition>
+
+      <modifymap>
+        <name><get name="topic"/><star/></name>
+        <key>enreproduccion</key>
+        <value>si</value>
+      </modifymap>
+      <addtoset>
+        <name>enreproduccion<get name="topic"/></name>
+        <key><srai>code <star/></srai></key>
+      </addtoset>
+      </think>
+      <get var="solucion"/>
+
+
+  </template>
+</category>
+</topic>
+<!-- Regla 6b -->
+<topic name="ambos">
+<category>
+  <pattern> adelanta (la reproduccion de) [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] <set>number</set> (minutos) </pattern>
+  <template>
+    <think>
+      <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+      <set var="minutonuevo"><srai> <star index="2"/> mas <get var="minutoactual"/></srai></set>
+      <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+      <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+      <set var="duracioncapitulo"><srai> DURACION CAPITULO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+      <set var="nombrecap"><srai> EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+
+      <set var="comparacion"><srai> <get var="minutonuevo"/> MAYOR QUE <get var="duracioncapitulo"/> </srai></set>
+      <condition var="comparacion">
+        <li><value><get var="minutonuevo"/></value>
+          <modifymap>
+            <name><get name="topic"/><star/></name>
+            <key>minactual</key>
+            <value>0</value>
+          </modifymap>
+          <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+          <set var="solucion">Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+          <set var="solucion"><get var="solucion"/>Capitulo acabado.</set>
+        </li>
+        <li><value><get var="duracioncapitulo"/></value>
+          <modifymap>
+            <name><get name="topic"/><star/></name>
+            <key>minactual</key>
+            <value><get var="minutonuevo"/></value>
+          </modifymap>
+          <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+          <set var="solucion">Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+
+        </li>
+
+      </condition>
+
+
+      <modifymap>
+        <name><get name="topic"/><star/></name>
+        <key>enreproduccion</key>
+        <value>si</value>
+      </modifymap>
+      <addtoset>
+        <name>enreproduccion<get name="topic"/></name>
+        <key><srai>code <star/></srai></key>
+      </addtoset>
+      </think>
+      <get var="solucion"/>
+
+
+  </template>
+</category>
+</topic>
+<!-- Regla 7b -->
+<topic name="ambos">
+  <category>
+    <pattern> retrasa (la reproduccion de) [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] <set>number</set> (minutos) </pattern>
+    <template>
+      <think>
+        <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+        <set var="minutonuevo"><srai> <get var="minutoactual"/> MENOS <star index="2"/></srai></set>
+        <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+        <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+        <set var="duracioncapitulo"><srai> DURACION CAPITULO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+        <set var="nombrecap"><srai> EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+
+        <set var="comparacion"><srai> <get var="minutonuevo"/> MAYOR QUE <get var="duracioncapitulo"/> </srai></set>
+        <condition var="comparacion">
+          <li><value><get var="minutonuevo"/></value>
+            <modifymap>
+              <name><get name="topic"/><star/></name>
+              <key>minactual</key>
+              <value>0</value>
+            </modifymap>
+            <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+            <set var="solucion">Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+            <set var="solucion"><get var="solucion"/>Capitulo acabado.</set>
+          </li>
+          <li><value><get var="duracioncapitulo"/></value>
+            <modifymap>
+              <name><get name="topic"/><star/></name>
+              <key>minactual</key>
+              <value><get var="minutonuevo"/></value>
+            </modifymap>
+            <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+            <set var="solucion">Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+
+          </li>
+
+        </condition>
+
+
+        <modifymap>
+          <name><get name="topic"/><star/></name>
+          <key>enreproduccion</key>
+          <value>si</value>
+        </modifymap>
+        <addtoset>
+          <name>enreproduccion<get name="topic"/></name>
+          <key><srai>code <star/></srai></key>
+        </addtoset>
+        </think>
+        <get var="solucion"/>
+
+
+    </template>
+  </category>
+  </topic>
+<!-- Regla 8b -->
+  <topic name="ambos">
+  <category>
+    <pattern> PASAN <set>number</set> (minutos) </pattern>
+    <template>
+
+      <think>
+        <set var="solucion"></set>
+        <set var="salida"><srai> SIMUL <star/> </srai>. </set>
+        <set var="lista"><readset>enreproduccion<get name="topic"/></readset></set>
+        <set var="item"><lowercase><srai>top <get var="lista"/></srai></lowercase></set>
+        <condition var="item">
+          <li value="NIL"></li>
+          <li value="$"></li>
+          <li>
+            <set var="item"><srai>decode <lowercase><get var="item"/></lowercase></srai></set>
+            <set var="minutoactual"><map><name><get name="topic"/><get var="item"/></name>minactual</map></set>
+            <set var="minutonuevo"><srai> <star/> mas <get var="minutoactual"/></srai></set>
+            <set var="numerocap"><map><name><get name="topic"/><get var="item"/></name>epiactual</map></set>
+            <set var="tempactual"><map><name><get name="topic"/><get var="item"/></name>temporada</map></set>
+            <set var="duracioncapitulo"><srai> DURACION CAPITULO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <get var="item"/></srai></set>
+            <set var="nombrecap"><srai> EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <get var="item"/></srai></set>
+
+            <set var="comparacion"><srai> <get var="minutonuevo"/> MAYOR QUE <get var="duracioncapitulo"/> </srai></set>
+            <condition var="comparacion">
+              <li><value><get var="minutonuevo"/></value>
+                <modifymap>
+                  <name><get name="topic"/><get var="item"/></name>
+                  <key>minactual</key>
+                  <value>0</value>
+                </modifymap>
+                <set var="minutoactual"><map><name><get name="topic"/><get var="item"/></name>minactual</map></set>
+                <set var="solucion"><get var="solucion"/>Reproduciendo <get var="item"/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+                <set var="solucion"><get var="solucion"/>Capitulo acabado.</set>
+              </li>
+              <li><value><get var="duracioncapitulo"/></value>
+                <modifymap>
+                  <name><get name="topic"/><get var="item"/></name>
+                  <key>minactual</key>
+                  <value><get var="minutonuevo"/></value>
+                </modifymap>
+                <set var="minutoactual"><map><name><get name="topic"/><get var="item"/></name>minactual</map></set>
+                <set var="solucion"><get var="solucion"/>Reproduciendo <get var="item"/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.</set>
+
+              </li>
+
+            </condition>
+            <set var="lista"><srai> remain <get var="lista"/></srai></set>
+            <set var="item"><srai> top <get var="lista"/></srai></set>
+        <loop/>
+        </li>
+        </condition>
+      </think>
+
+      <get var="salida"/><get var="solucion"/>
+
+    </template>
+  </category>
+  </topic>
+<!-- Regla 9b -->
+  <topic name="ambos">
+    <category>
+      <pattern>pon el siguiente [capitulo episodio] de [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] </pattern>
+      <template>
+        <think>
+        <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+        <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+        <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+        <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+        <modifymap>
+          <name><get name="topic"/><star/></name>
+          <key>epiactual</key>
+          <value><map name="successor"><get var="numerocap"/></map></value>
+        </modifymap>
+
+        <modifymap>
+          <name><get name="topic"/><star/></name>
+          <key>enreproduccion</key>
+          <value>si</value>
+        </modifymap>
+        <modifymap>
+          <name><get name="topic"/><star/></name>
+          <key>minactual</key>
+          <value>0</value>
+        </modifymap>
+        <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+        <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+        <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+        <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+        <addtoset>
+          <name>enreproduccion<get name="topic"/></name>
+          <key><srai>code <star/></srai></key>
+        </addtoset>
+        </think>
+        Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.
+
+      </template>
+    </category>
+    </topic>
+<!-- Regla 10b -->
+    <topic name="ambos">
+      <category>
+        <pattern>pon la siguiente temporada de [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] </pattern>
+        <template>
+          <think>
+          <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+          <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+          <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+          <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+          <modifymap>
+            <name><get name="topic"/><star/></name>
+            <key>temporada</key>
+            <value><map name="successor"><get var="tempactual"/></map></value>
+          </modifymap>
+          <modifymap>
+            <name><get name="topic"/><star/></name>
+            <key>epiactual</key>
+            <value>1</value>
+          </modifymap>
+
+          <modifymap>
+            <name><get name="topic"/><star/></name>
+            <key>enreproduccion</key>
+            <value>si</value>
+          </modifymap>
+          <modifymap>
+            <name><get name="topic"/><star/></name>
+            <key>minactual</key>
+            <value>0</value>
+          </modifymap>
+          <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+          <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+          <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+          <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+          <addtoset>
+            <name>enreproduccion<get name="topic"/></name>
+            <key><srai>code <star/></srai></key>
+          </addtoset>
+          </think>
+          Reproduciendo <star/>, capitulo <get var="numerocap"/>, <get var="nombrecap"/>  por el minuto <get var="minutoactual"/>.
+
+        </template>
+      </category>
+      </topic>
+<!-- Regla 11b -->
+      <topic name="ambos">
+        <category>
+          <pattern>pon el idioma de [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] en <set>idiomas</set> </pattern>
+          <template>
+            <think>
+            <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+            <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+            <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+            <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+            <set var="idioma"><star index="2"/></set>
+            <set var="condicion"><srai><star/> IDIOMA <get var="idioma"/></srai></set>
+            <condition var="condicion">
+              <li value="Si">
+            <modifymap>
+              <name><get name="topic"/><star/></name>
+              <key>idioma</key>
+              <value><star index="2"/></value>
+            </modifymap>
+
+            <set var="salida"><star/> idioma cambiado a <star index="2"/></set>
+          </li>
+          <li><set var="salida"><star/> No se encuentra en ese idioma</set></li>
+          </condition>
+
+
+            </think>
+<get var="salida"/>
+          </template>
+        </category>
+        </topic>
+<!-- Regla 12b -->
+        <topic name="ambos">
+          <category>
+            <pattern>pon los subtitulos de [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] en <set>idiomas</set> </pattern>
+            <template>
+              <think>
+              <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+              <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+              <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+              <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+              <set var="idioma"><star index="2"/></set>
+              <set var="condicion"><srai><star/> SUBTITULOS <get var="idioma"/></srai></set>
+              <condition var="condicion">
+                <li value="Si">
+              <modifymap>
+                <name><get name="topic"/><star/></name>
+                <key>subtitulos</key>
+                <value><star index="2"/></value>
+              </modifymap>
+
+              <set var="salida"><star/> subtitulos cambiados a <star index="2"/></set>
+            </li>
+            <li><set var="salida"><star/> No se encuentra con esos subtitulos </set></li>
+            </condition>
+
+
+              </think>
+  <get var="salida"/>
+            </template>
+          </category>
+          </topic>
+<!-- Regla 13b -->
+          <topic name="ambos">
+            <category>
+              <pattern>quita los subtitulos de [ <set>seriesnetflix</set> <set>seriesprimevideo</set> ] </pattern>
+              <template>
+                <think>
+                <set var="numerocap"><map><name><get name="topic"/><star/></name>epiactual</map></set>
+                <set var="tempactual"><map><name><get name="topic"/><star/></name>temporada</map></set>
+                <set var="minutoactual"><map><name><get name="topic"/><star/></name>minactual</map></set>
+                <set var="nombrecap"><srai>EPISODIO <get var="numerocap"/> TEMPORADA <get var="tempactual"/> SERIE <star/></srai></set>
+                <modifymap>
+                  <name><get name="topic"/><star/></name>
+                  <key>subtitulos</key>
+                  <value></value>
+                </modifymap>
+
+                <set var="salida"><star/> subtitulos quitados</set>
+                </think>
+    <get var="salida"/>
+              </template>
+            </category>
+            </topic>
+
+
+<topic name="ambos">
+  <category>
+    <pattern> se va carlos </pattern>
+    <template>
+      <think>
+      <set name="topic">marta</set>
+      </think>
+OK, bienvenida marta    </template>
+  </category>
+  </topic>
+
+  <topic name="ambos">
+    <category>
+      <pattern> se va marta </pattern>
+      <template>
+        <think>
+        <set name="topic">carlos</set>
+        </think>
+  OK, bienvenida carlos    </template>
+    </category>
+    </topic>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--funiones idiomas -->
+<!-- Regla 2a -->
+<category>
+  <pattern> [ <set>seriesnetflix</set>  <set>seriesprimevideo</set> ] IDIOMA <set>idiomas</set> </pattern>
+  <template>
+    <think>
+      <set var="lista"><map><name><star index="1"/></name>idiomas</map></set>
+      <set var="lista"><srai>decode_fields <get var="lista"/></srai></set>
+      <set var="idioma"><first><get var="lista"/></first></set>
+
+      <condition var="idioma">
+        <li value="NIL"><set var="solucion">No</set></li>
+        <li><value><star index="2"/></value>
+        <set var="solucion">Si</set>
+        </li>
+        <li>
+          <set var="lista"><rest><get var="lista"/></rest></set>
+          <set var="idioma"><first><get var="lista"/></first></set>
+          <loop/>
+        </li>
+      </condition>
+    </think>
+    <get var="solucion"/>
+  </template>
+</category>
+
+<!-- Regla 2b -->
+<category>
+  <pattern> [ <set>seriesnetflix</set>  <set>seriesprimevideo</set> ] SUBTITULOS <set>idiomas</set> </pattern>
+  <template>
+    <think>
+      <set var="lista"><map><name><star index="1"/></name>subtitulos</map></set>
+      <set var="lista"><srai>decode_fields <get var="lista"/></srai></set>
+      <set var="idioma"><first><get var="lista"/></first></set>
+
+      <condition var="idioma">
+        <li value="NIL"><set var="solucion">No</set></li>
+        <li><value><star index="2"/></value>
+        <set var="solucion">Si</set>
+        </li>
+        <li>
+          <set var="lista"><rest><get var="lista"/></rest></set>
+          <set var="idioma"><first><get var="lista"/></first></set>
+          <loop/>
+        </li>
+      </condition>
+    </think>
+    <get var="solucion"/>
+  </template>
+</category>
+
+
+
+  <!-- funcion para saber episodio segun numero -->
+  <category>
+    <pattern> EPISODIO <set>number</set> TEMPORADA <set>number</set> SERIE <set>seriesnetflix</set> </pattern>
+    <template>
+      <think>
+      <set var="lista"><srai> decode_fields <srai>decode_numbers <map><name><star index="3"/></name>temporada<star index="2"/></map></srai></srai></set>
+      <set var="episodio"><srai>SELECTITEM <star/> in <get var="lista"/></srai></set>
+
+      <condition var="episodio">
+        <li value="$">
+          <set var="solucion">El episodio que buscas no existe.</set>
+        </li>
+        <li><set var="solucion">"<srai>decode <get var="episodio"/></srai>"</set></li>
+      </condition>
+      </think>
+<get var="solucion"/>
+    </template>
+  </category>
+
+  <!-- funcion para saber episodio segun numero -->
+  <category>
+    <pattern> EPISODIO <set>number</set> TEMPORADA <set>number</set> SERIE <set>seriesprimevideo</set> </pattern>
+    <template>
+      <think>
+      <set var="lista"><srai> decode_fields <srai>decode_numbers <map><name><star index="3"/></name>temporada<star index="2"/></map></srai></srai></set>
+      <set var="episodio"><srai>SELECTITEM <star/> in <get var="lista"/></srai></set>
+
+      <condition var="episodio">
+        <li value="$">
+          <set var="solucion">El episodio que buscas no existe.</set>
+        </li>
+        <li><set var="solucion">"<srai>decode <get var="episodio"/></srai>"</set></li>
+      </condition>
+      </think>
+<get var="solucion"/>
+    </template>
+  </category>
+
+  <!-- funcion para saber duracion de episodio -->
+  <category>
+    <pattern> DURACION CAPITULO <set>number</set> TEMPORADA <set>number</set> SERIE <set>seriesnetflix</set> </pattern>
+    <template>
+      <think>
+      <set var="lista"><srai>decode_fields <srai> decode <srai> decode_caracteres <map><name><star index="3"/></name>temporada<star index="2"/></map></srai></srai></srai></set>
+      <set var="episodio"><srai>SELECTITEM <star/> in <get var="lista"/></srai></set>
+
+      <condition var="episodio">
+        <li value="$">
+          <set var="solucion">El episodio que buscas no existe.</set>
+        </li>
+        <li><set var="solucion"><get var="episodio"/></set></li>
+      </condition>
+      </think>
+<get var="solucion"/>
+    </template>
+  </category>
+
+  <!-- funcion para saber duracion de episodio -->
+  <category>
+    <pattern> DURACION CAPITULO <set>number</set> TEMPORADA <set>number</set> SERIE <set>seriesprimevideo</set> </pattern>
+    <template>
+      <think>
+      <set var="lista"><srai>decode_fields <srai> decode <srai> decode_caracteres <map><name><star index="3"/></name>temporada<star index="2"/></map></srai></srai></srai></set>
+      <set var="episodio"><srai>SELECTITEM <star/> in <get var="lista"/></srai></set>
+
+      <condition var="episodio">
+        <li value="$">
+          <set var="solucion">El episodio que buscas no existe.</set>
+        </li>
+        <li><set var="solucion"><get var="episodio"/></set></li>
+      </condition>
+      </think>
+<get var="solucion"/>
+    </template>
+  </category>
+
+
+</aiml>

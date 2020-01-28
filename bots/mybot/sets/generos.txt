@@ -1,0 +1,7 @@
+comedia
+drama
+crimen
+suspense
+biografia
+fantasia
+ciencia ficcion
